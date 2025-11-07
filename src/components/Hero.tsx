@@ -7,20 +7,18 @@ const Hero = () => {
   const [borderColorIndex, setBorderColorIndex] = useState(0);
   const [customProfit, setCustomProfit] = useState<string>("");
 
-  // 生成 5% 到 100% 的数组
+  // 生成 5% 到 100%
   const percentages = Array.from({ length: 20 }, (_, i) => (i + 1) * 5);
 
-  // 处理自订利润提交
   const handleCustomProfitSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const profit = parseFloat(customProfit);
     if (!isNaN(profit) && profit >= 0) {
       setActiveButton(profit);
-      setCustomProfit(""); // 清空输入框
+      setCustomProfit("");
     }
   };
 
-  // 颜色循环：红 → 黄 → 蓝 → 绿
   const borderColors = [
     "border-red-500",
     "border-yellow-500",
@@ -35,7 +33,6 @@ const Hero = () => {
     "text-green-700",
   ];
 
-  // 每3秒切换颜色
   useEffect(() => {
     const interval = setInterval(() => {
       setBorderColorIndex((prev) => (prev + 1) % borderColors.length);
@@ -45,7 +42,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="w-full flex flex-col p-4 space-y-4">
+    <div className="w-full h-full flex flex-col p-4 space-y-4 overflow-auto">
       <header
         className="h-16 bg-white dark:bg-gray-700 rounded-2xl
                    flex items-center px-4 gap-2"
@@ -83,9 +80,9 @@ const Hero = () => {
         </form>
       </header>
 
-      <div className="h-full bg-gray-100 dark:bg-gray-700 rounded-2xl p-4">
-        <div className="h-3/4">
-          <div className="grid grid-cols-4 grid-rows-5 gap-8 h-full p-10 place-items-center">
+      <div className="h-full bg-gray-100 dark:bg-gray-700 rounded-2xl p-4 overflow-auto flex flex-col">
+        <div className="flex-3">
+          <div className="grid grid-cols-4 grid-rows-5 gap-10 h-full p-6 place-items-center">
             {percentages.map((percentage) => (
               <Button
                 key={percentage}
@@ -102,7 +99,7 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="h-1/4 w-full pl-25 flex items-center justify-around">
+        <div className="flex-1 w-full pl-25 flex items-center justify-around">
           <div
             className={`w-40 h-40 rounded-full border-4 ${borderColors[borderColorIndex]}
                           bg-gray-100 flex items-center justify-center transition-colors duration-500`}

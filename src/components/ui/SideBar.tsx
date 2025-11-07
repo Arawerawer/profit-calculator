@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const SideBar = () => {
   return (
-    <div className="w-1/5 py-4 pl-4 hidden lg:block">
+    <div className="w-1/5 h-full py-4 pl-4 hidden lg:block">
       <div className="h-full bg-white dark:bg-gray-700 rounded-2xl shadow-lg">
         <div className="flex items-center justify-center pt-6">
           <DragonSVG

@@ -18,22 +18,20 @@ const ProfitCounter = () => {
   };
 
   return (
-    <div className="w-full flex flex-col p-4 space-y-4">
+    <div className="w-full h-full flex flex-col p-4 space-y-4 overflow-auto">
       <header
-        className="h-16 bg-white dark:bg-gray-700 rounded-2xl 
+        className="h-16 bg-white dark:bg-gray-700 rounded-2xl
                        flex items-center px-4 gap-4"
       ></header>
 
-      <div className="h-full bg-gray-100 dark:bg-gray-700 rounded-2xl p-4 flex items-center justify-center">
+      <div className="h-full bg-gray-100 dark:bg-gray-700 rounded-2xl p-4 flex items-center justify-center overflow-auto">
         <form
           onSubmit={handleCalculate}
-          className="w-full max-w-5xl h-4/5 px-6 py-4 bg-gray-500/20 rounded-lg flex flex-col justify-around"
+          className="w-full max-w-5xl px-6 py-4 bg-gray-500/20 rounded-lg flex flex-col gap-6"
         >
-          <h2 className="text-center text-[#00FF00] text-5xl mb-5">
-            {percentage}%
-          </h2>
+          <h2 className="text-center text-[#00FF00] text-5xl">{percentage}%</h2>
 
-          <div className="mb-6">
+          <div>
             <label
               htmlFor="InputPrice"
               className="block mb-2 text-2xl font-medium text-white text-center"
@@ -70,7 +68,7 @@ const ProfitCounter = () => {
 
           <button
             type="submit"
-            className="w-full py-8 text-2xl font-semibold bg-[#00FF00] rounded-2xl
+            className="w-full py-4 text-2xl font-semibold bg-[#00FF00] rounded-2xl
                        hover:bg-[#00DD00] transition-colors"
           >
             計算
@@ -78,7 +76,7 @@ const ProfitCounter = () => {
 
           <Link
             to="/"
-            className="py-10 px-30 bg-yellow-300 rounded-2xl
+            className="py-4 px-6 bg-yellow-300 rounded-2xl
                        font-extrabold text-2xl text-red-500
                        hover:bg-yellow-400 transition-colors
                        flex items-center justify-center cursor-pointer"
