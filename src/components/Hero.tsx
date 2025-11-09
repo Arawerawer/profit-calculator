@@ -19,6 +19,10 @@ const Hero = () => {
     }
   };
 
+  const handleButtonClick = (percentage: number) => {
+    setActiveButton((prev) => (prev === percentage ? null : percentage));
+  };
+
   const borderColors = [
     "border-red-500",
     "border-yellow-500",
@@ -47,18 +51,22 @@ const Hero = () => {
         className="h-16 bg-white dark:bg-gray-700 rounded-2xl
                    flex items-center px-4 gap-2"
       >
-        {/* 自訂利潤標籤 */}
-        <span className="text-gray-700 dark:text-gray-300 font-medium text-lg">
-          自訂利潤：
-        </span>
-
+        {/* 自訂利潤表單 */}
         <form
           onSubmit={handleCustomProfitSubmit}
           className="flex items-center gap-2"
         >
+          <label
+            htmlFor="customProfitInput"
+            className="text-gray-700 dark:text-gray-300 font-medium text-lg whitespace-nowrap"
+          >
+            自訂利潤：
+          </label>
+
           <div className="max-w-md">
             <input
               type="number"
+              id="customProfitInput"
               value={customProfit}
               onChange={(e) => setCustomProfit(e.target.value)}
               className="w-full py-1.5 pl-2  pr-4 rounded-2xl
@@ -73,7 +81,7 @@ const Hero = () => {
             type="submit"
             className="px-4 py-1 bg-[#00FF00] rounded-2xl
                        font-medium  text-gray-800 text-lg
-                       hover:bg-[#00DD00] transition-colors"
+                       hover:bg-[#00DD00] transition-colors whitespace-nowrap"
           >
             提交
           </button>
@@ -82,15 +90,11 @@ const Hero = () => {
 
       <div className="h-full bg-gray-100 dark:bg-gray-700 rounded-2xl p-4 overflow-auto flex flex-col">
         <div className="flex-3">
-          <div className="grid grid-cols-4 grid-rows-5 gap-10 h-full p-6 place-items-center">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 h-full p-6 place-items-center">
             {percentages.map((percentage) => (
               <Button
                 key={percentage}
-                onClick={() =>
-                  setActiveButton(
-                    activeButton === percentage ? null : percentage
-                  )
-                }
+                onClick={() => handleButtonClick(percentage)}
                 isActive={activeButton === percentage}
               >
                 {percentage}%
@@ -99,14 +103,14 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="flex-1 w-full pl-25 flex items-center justify-around">
+        <div className="flex-1 w-full flex flex-col md:flex-row items-center justify-around gap-4 md:gap-0">
           <div
-            className={`w-40 h-40 rounded-full border-4 ${borderColors[borderColorIndex]}
-                          bg-gray-100 flex items-center justify-center transition-colors duration-500`}
+            className={`w-32 h-32 md:w-40 md:h-40 rounded-full border-4 ${borderColors[borderColorIndex]}
+                        bg-gray-100 flex items-center justify-center transition-colors duration-500`}
           >
             <h1
-              className={`text-2xl font-bold transition-colors duration-500 overflow-auto
-                             ${textColors[borderColorIndex]}`}
+              className={`text-xl md:text-2xl font-bold transition-colors duration-500 overflow-auto
+                          ${textColors[borderColorIndex]}`}
             >
               {activeButton || 0}%
             </h1>
@@ -115,10 +119,10 @@ const Hero = () => {
           <Link
             to="/profit"
             state={{ percentage: activeButton || 0 }}
-            className="py-10 px-30 bg-yellow-300 rounded-2xl
-                       font-extrabold text-2xl text-red-500
+            className="py-4 px-6 md:py-10 md:px-30 bg-yellow-300 rounded-2xl
+                       font-extrabold text-xl md:text-2xl text-red-500
                        hover:bg-yellow-400 transition-colors
-                       flex items-center justify-center cursor-pointer"
+                       flex items-center justify-center cursor-pointer whitespace-nowrap"
           >
             導向計算頁面
           </Link>

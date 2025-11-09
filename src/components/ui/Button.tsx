@@ -15,7 +15,7 @@ const Button = ({ onClick, isActive, children }: ButtonProps) => {
                  font-bold text-black shadow-md
                  transition-shadow ease-in-out duration-500
                  hover:shadow-lg hover:shadow-yellow-500
-                 focus:shadow-lg focus:shadow-yellow-500
+                 focus:shadow-xl focus:shadow-yellow-500
                  cursor-pointer
                  ${isActive ? "ring-4 ring-blue-500" : "focus:shadow-none"}`}
       data-ripple-light="true"
